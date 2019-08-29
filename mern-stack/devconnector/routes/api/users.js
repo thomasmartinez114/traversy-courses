@@ -35,10 +35,15 @@ router.post(
         res.status(400).json({ errors: [{ msg: 'User already exists' }] });
       }
       // See if user exists
+      let user = await User.findOne({ email });
+
+      if (user) {
+        res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+      }
 
       // Get users gravatar
 
-      // Encrypt password
+      // Encrypt password using bcrypt
 
       // Return jsonwebtoken
       res.send('User router');
